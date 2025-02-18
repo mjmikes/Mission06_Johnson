@@ -1,0 +1,49 @@
+@model List<Movie>
+
+@{
+    ViewData["Title"] = "Movie List";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Collection</title>
+</head>
+<body>
+<h1>Movie Collection</h1>
+
+<table class="table table-bordered">
+    <thead class="fw-bold">
+    <tr>
+        <th>CategoryId</th>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Director</th>
+        <th>Rating</th>
+        <th>Edited</th>
+        <th>Lent To</th>
+        <th>Notes</th>
+    </tr>
+    </thead>
+    @foreach (var x in Model)
+    {
+    <tbody>
+        <tr>
+            <td>@x.CategoryId</td>
+            <td>@x.Title</td>
+            <td>@x.Year</td>
+            <td>@x.Director</td>
+            <td>@x.Rating</td>
+            <td>@x.Edited ? "Yes" : "No"</td>
+            <td>@x.LentTo</td>
+            <td>@x.Notes</td>
+        </tr>
+        </tbody>
+    }
+</table>
+</body>
+</html>

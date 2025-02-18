@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mission06_Johnson.Models;
 
@@ -7,8 +8,9 @@ public class Movie
     [Key]
     public int MovieId { get; set; }
     
-    public string Category { get; set; }
-    
+    [ForeignKey("CategoryId")]
+    public int CategoryId { get; set; }
+    public Category Category { get; set; }
     public string Title { get; set; }
     
     public string Director { get; set; }
