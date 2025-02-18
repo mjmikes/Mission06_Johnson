@@ -1,18 +1,9 @@
-@model TModel
+@model Mission06_Johnson.Models.Movie
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Movie Form";
 }
 
-<!DOCTYPE html>
+<h1>@ViewData["Title"]</h1>
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
-</div>
-</body>
-</html>
+<h2>Thank you for submitting a movie! @Model.Title is a great movie! </h2>

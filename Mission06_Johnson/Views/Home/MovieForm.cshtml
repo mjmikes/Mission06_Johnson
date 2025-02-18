@@ -1,18 +1,54 @@
-@model TModel
+@model Mission06_Johnson.Models.Movie
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Movie Form";
 }
 
-<!DOCTYPE html>
+<h1>@ViewData["Title"]</h1>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter New Movie</title>
 </head>
 <body>
-<div>
-      
-</div>
+<h1>Add a New Movie to the Collection</h1>
+<form method="post">
+    <label asp-for="Category">Category:</label>
+    <input asp-for="Category" required><br><br>
+
+    <label asp-for="Title">Title:</label>
+    <input asp-for="Title" required><br><br>
+
+    <label asp-for="Year">Year:</label>
+    <input asp-for="Year" required type="number"><br><br>
+
+    <label asp-for="Director">Director:</label>
+    <input asp-for="Director" required><br><br>
+
+    <label asp-for="Rating">Rating:</label>
+    <select asp-for="Rating" required>
+        <option value="G">G</option>
+        <option value="PG">PG</option>
+        <option value="PG-13">PG-13</option>
+        <option value="R">R</option>
+    </select><br><br>
+
+    <label asp-for="Edited">Edited:</label>
+    <input asp-for="Edited" type="radio" value="true">
+    <label for="Edited">Yes</label>
+    <input asp-for="Edited" type="radio" value="false">
+    <label for="Edited">No</label><br><br>
+
+    <label asp-for="LentTo">Lent To:</label>
+    <input asp-for="LentTo"><br><br>
+
+    <label asp-for="Notes">Notes:</label>
+    <input asp-for="Notes" maxlength="25"><br><br>
+
+    <button type="submit">Add Movie</button>
+</form>
 </body>
 </html>
