@@ -1,24 +1,32 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Mission06_Johnson.Models;
-
-public class MovieFormContext : DbContext
+namespace Mission06_Johnson.Models
 {
-    public MovieFormContext(DbContextOptions<MovieFormContext> options) : base(options)
+    public class MovieFormContext : DbContext
     {
-        
-    }
-    
-    public DbSet<Movie> Movies { get; set; }
-    public DbSet<Category> Categories { get; set; }
+        public MovieFormContext(DbContextOptions<MovieFormContext> options) : base(options)
+        {
+        }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) //Seed Data
-    {
-        modelBuilder.Entity<Category>().HasData(
-            new Category { CategoryId = 1, CategoryName = "Mystery" },
-            new Category { CategoryId = 2, CategoryName = "Horror" },
-            new Category { CategoryId = 3, CategoryName = "Adventure" },
-            new Category { CategoryId = 4, CategoryName = "Drama" },
-            new Category { CategoryId = 5, CategoryName = "Comedy" });
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Movie>()
+                .HasOne(m => m.Category)  // A Movie has one Category
+                .WithMany()               // A Category can have many Movies
+                .HasForeignKey(m => m.CategoryId) // Foreign Key
+                .OnDelete(DeleteBehavior.Restrict); // Prevent accidental deletion of categories
+        }
+
+        // ✅ Ensure SQLite Uses Your Database and Enforces Foreign Keys
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlite("Data Source=JoelHiltonMovieCollection.sqlite");
+            }
+        }
     }
 }

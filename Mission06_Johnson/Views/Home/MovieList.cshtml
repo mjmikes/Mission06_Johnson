@@ -6,16 +6,6 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Collection</title>
-</head>
-<body>
-<h1>Movie Collection</h1>
-
 <table class="table table-bordered">
     <thead class="fw-bold">
     <tr>
@@ -26,24 +16,27 @@
         <th>Rating</th>
         <th>Edited</th>
         <th>Lent To</th>
+        <th>CopiedToPlex</th>
         <th>Notes</th>
+        <th>Actions</th>
     </tr>
     </thead>
+    <tbody>
     @foreach (var x in Model)
     {
-    <tbody>
         <tr>
             <td>@x.CategoryId</td>
             <td>@x.Title</td>
             <td>@x.Year</td>
             <td>@x.Director</td>
             <td>@x.Rating</td>
-            <td>@x.Edited ? "Yes" : "No"</td>
+            <td>@(x.Edited.HasValue ? (x.Edited.Value ? "Yes" : "No") : "Unknown")</td>
             <td>@x.LentTo</td>
+            <td>@(x.CopiedToPlex.HasValue ? (x.CopiedToPlex.Value ? "Yes" : "No") : "Unknown")</td>
             <td>@x.Notes</td>
+            <td><a class="btn btn-secondary" asp-controller="Home" asp-action="Edit" asp-route-id="@x.MovieId">Edit</a></td>
+            <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.MovieId">Delete</a></td>
         </tr>
-        </tbody>
     }
+    </tbody>
 </table>
-</body>
-</html>

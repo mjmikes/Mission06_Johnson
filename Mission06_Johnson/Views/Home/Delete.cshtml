@@ -1,0 +1,14 @@
+@model Mission06_Johnson.Models.Movie
+
+@{
+    ViewData["Title"] = "Confirm Deletion"; 
+}
+
+<h2>Confirm Deletion</h2> 
+<h3>@Model.Title</h3>
+<form method="post">
+    
+    <input type="hidden" asp-for="MovieId"></input>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a class="btn btn-info" asp-controller="Home" asp-action="MovieList">Back to List</a>
+</form>
