@@ -17,14 +17,13 @@
 <h1>Add a New Movie to the Collection</h1>
 <form asp-action="@(Model.MovieId == 0 ? "MovieForm" : "Edit")" asp-controller="Home" method="post">
     <input type="hidden" asp-for="MovieId" value="@Model.MovieId">
-    <select asp-for="CategoryId" class="form-control" required>
+    <select asp-for="CategoryId" class="form-control">
         <option value="" disabled selected>Select a Category</option>
         @foreach (var c in ViewBag.Categories)
         {
             <option value="@c.CategoryId">@c.CategoryName</option>
         }
     </select>
-    <span asp-validation-for="CategoryId" class="text-danger"></span>
 
     <br/>
     <label asp-for="Title">Title:</label>
@@ -36,7 +35,7 @@
     <span asp-validation-for="Year" class="text-danger"></span> <!-- ✅ Show error --><br><br>
 
     <label asp-for="Director">Director:</label>
-    <input asp-for="Director" required><br><br>
+    <input asp-for="Director" ><br><br>
 
     <label asp-for="Rating">Rating:</label>
     <select asp-for="Rating" required>
